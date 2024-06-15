@@ -36,6 +36,7 @@ function updateTimer(stats) {
 function initGameBoard() {
   const gameBoard = document.getElementById('game-board');
 
+  // Створити 10x10 сітку
   for (let i = 0; i < 100; i++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
@@ -69,19 +70,25 @@ function generateFood(snake) {
 
 function initGame() {
   initGameBoard();
+
+  // Створити екземпляри класів
   const snake = new Snake();
   const gameStats = new GameStats();
 
+  // Розмістити змійку на полі
   placeSnake(snake);
 
+  // Генерація їжі
   generateFood(snake);
 
-  // Оновити інформацію про гру на сторінцs
+  // Оновити інформацію про гру на сторінці
   document.getElementById('snake-length').innerText = `Snake Length: ${gameStats.snakeLength}`;
   document.getElementById('free-cells').innerText = `Free Cells: ${gameStats.freeCells}`;
   document.getElementById('difficulty-level').innerText = `Difficulty Level: ${gameStats.difficultyLevel}`;
 
+  // Запустити таймер
   setInterval(() => updateTimer(gameStats), 1000);
 }
 
+// Ініціалізувати гру при завантаженні сторінки
 window.onload = initGame;
